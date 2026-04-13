@@ -1,4 +1,4 @@
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwHUEKQmW_DXacRbfIGQaiGpnrNWkeN8BAt1s0Nv-9zJpe8bbIYk396pBPh51AB73b7qQ/exec";
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbxyJHj-zdhoqWh7dD5_DkwFgsswUUOGeAo9kM-_vFXuZkMUPlu9Ci0BIwm0toC6Y-BGnA/exec";
 
 const pinInput = document.getElementById("pin");
 const cantiereSelect = document.getElementById("cantiere");
