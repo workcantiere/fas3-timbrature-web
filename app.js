@@ -1,4 +1,4 @@
-const URL_SCRIPT = "INCOLLA_QUI_IL_TUO_LINK_APPS_SCRIPT";
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwHUEKQmW_DXacRbfIGQaiGpnrNWkeN8BAt1s0Nv-9zJpe8bbIYk396pBPh51AB73b7qQ/exec";
 
 const pinInput = document.getElementById("pin");
 const cantiereSelect = document.getElementById("cantiere");
