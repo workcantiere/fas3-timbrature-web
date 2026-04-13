@@ -1,4 +1,4 @@
-const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbxyJHj-zdhoqWh7dD5_DkwFgsswUUOGeAo9kM-_vFXuZkMUPlu9Ci0BIwm0toC6Y-BGnA/exec";
+const URL_SCRIPT = "INCOLLA_QUI_IL_TUO_LINK_APPS_SCRIPT";
 
 const pinInput = document.getElementById("pin");
 const cantiereSelect = document.getElementById("cantiere");
@@ -15,12 +15,16 @@ async function caricaCantieri() {
 
   cantiereSelect.innerHTML = '<option value="">Seleziona cantiere</option>';
 
-  data.data.forEach(c => {
-    const option = document.createElement("option");
-    option.value = c.id;
-    option.textContent = c.nome;
-    cantiereSelect.appendChild(option);
-  });
+  if (data.ok && Array.isArray(data.data)) {
+    data.data.forEach(c => {
+      const option = document.createElement("option");
+      option.value = c.id;
+      option.textContent = c.nome;
+      cantiereSelect.appendChild(option);
+    });
+  } else {
+    messaggio.textContent = data.messaggio || "Errore caricamento cantieri";
+  }
 }
 
 async function aggiornaStato() {
@@ -33,7 +37,11 @@ async function aggiornaStato() {
   if (!pin || !idCantiere) return;
 
   const res = await fetch(
-    URL_SCRIPT + "?action=verificaStato&pin=" + encodeURIComponent(pin) + "&idCantiere=" + encodeURIComponent(idCantiere)
+    URL_SCRIPT +
+      "?action=verificaStato&pin=" +
+      encodeURIComponent(pin) +
+      "&idCantiere=" +
+      encodeURIComponent(idCantiere)
   );
 
   const risultato = await res.json();
@@ -61,14 +69,18 @@ async function eseguiTimbratura(azione, pin, idCantiere) {
   } else if (azione === "USCITA") {
     actionApi = "registraUscita";
   } else {
+    messaggio.textContent = "Azione non valida";
     return;
   }
 
   const res = await fetch(
     URL_SCRIPT +
-      "?action=" + actionApi +
-      "&pin=" + encodeURIComponent(pin) +
-      "&idCantiere=" + encodeURIComponent(idCantiere)
+      "?action=" +
+      actionApi +
+      "&pin=" +
+      encodeURIComponent(pin) +
+      "&idCantiere=" +
+      encodeURIComponent(idCantiere)
   );
 
   const risultato = await res.json();
